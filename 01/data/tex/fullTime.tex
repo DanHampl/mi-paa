@@ -1,0 +1,71 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{semilogyaxis}[
+			xlabel=Items in set,
+			ylabel=Seconds per set,
+			scatter/classes={
+				NSm={mark=square*,blue},
+				NSt={mark=square*,red},
+				ZSm={mark=o,draw=green},
+				ZSt={mark=o,draw=yellow}
+				}
+			]
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+				x y label
+				4 .000012 NSt
+				10 .000592 NSt
+				15 .020742 NSt
+				20 .618554 NSt
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+				x y label
+				4 .000004 NSm
+				10 .000020 NSm
+				15 .000086 NSm
+				20 .000468 NSm
+				22 .001314 NSm
+				25 .005580 NSm
+				27 .009312 NSm
+				30 .032978 NSm
+				32 .119828 NSm
+				35 .247428 NSm
+				37 .619952 NSm
+				40 2.586132 NSm
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+				x y label
+				4 .000012 ZSt
+				10 .000598 ZSt
+				15 .018868 ZSt
+				20 .608726 ZSt
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+				x y label
+				4 .000010 ZSm
+				10 .000232 ZSm
+				15 .004348 ZSm
+				20 .086982 ZSm
+				22 .280292 ZSm
+				25 1.753028 ZSm
+			};
+			\addlegendentry{Branch \& Bounds on random data}
+			\addlegendentry{Brute Force on random data}
+			\addlegendentry{Branch \& Bounds on hard data}
+			\addlegendentry{Brute Force on hard data}
+		\end{semilogyaxis}
+	\end{tikzpicture}
+\caption{Time needed depending on number of items in set}
+\label{plot:fullTime}
+\end{figure}

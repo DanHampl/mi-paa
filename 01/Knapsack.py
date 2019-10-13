@@ -28,7 +28,7 @@ class Knapsack(object):
 
     def _solveStupid(self, used=0, index=0, weight=0, price=0):
         if index == self.size:
-            if weight <= self.capacity and price >= self.minPrice:
+            if weight <= self.capacity:
                 return (weight, price, used)
             return (0, 0, used)
 
@@ -50,18 +50,7 @@ class Knapsack(object):
         return res1
 
     def verify(self, line):
-        data = line.split(' ', 3)
-        price = 0
-        weight = 0
-        index = 0
-        i = 1
-        while self.res[2] >= i:
-            if self.res[2] & i:
-                weight += self.items[index].weight
-                price += self.items[index].price
-            i = i << 1
-            index += 1
-        return self.minPrice == 0 or weight <= self.capacity and price >= self.minPrice or int(data[2]) < self.minPrice
+        return int(line.split(' ', 3)[2]) == self.res[1]
 
     def solveSmart(self):
         self.res = self._solveSmart(
@@ -76,15 +65,17 @@ class Knapsack(object):
                     price=0,
                     ):
 
-        if self.best[1] > price + completePrice:
+        if self.best[1] >= price + completePrice:
             return (0, 0, used)
 
-        if weight <= self.capacity and price >= self.minPrice:
-            if self.best[1] < price:
-                self.best = (weight, price, used)
-            return (weight, price, used)
+        if weight > self.capacity:
+            return (0, 0, used)
 
-        if index == self.size or weight > self.capacity:
+        if index == self.size:
+            if weight <= self.capacity:
+                if self.best[1] < price:
+                    self.best = (weight, price, used)
+                return (weight, price, used)
             return (0, 0, used)
 
         res1 = self._solveSmart(
@@ -105,3 +96,71 @@ class Knapsack(object):
         if res1[1] < res2[1]:
             return res2
         return res1
+
+    def decideStupid(self):
+        self.res = False
+        self._decideStupid()
+
+    def _decideStupid(self, index=0, weight=0, price=0):
+        if self.res:
+            return
+
+        if index == self.size:
+            if weight <= self.capacity and price >= self.minPrice:
+                self.res = True
+            return
+
+        res1 = self._decideStupid(
+            index+1,
+            weight+self.items[index].weight,
+            price+self.items[index].price,
+        )
+        res2 = self._decideStupid(
+            index+1,
+            weight,
+            price,
+        )
+
+        return
+
+    def verifyDecision(self, line):
+        # print(int(line.split(' ', 3)[2]), self.minPrice, self.res)
+        return (int(line.split(' ', 3)[2]) >= self.minPrice) == self.res
+
+    def decideSmart(self):
+        self.res = False
+        self._decideSmart(
+            self.completePrice,
+        )
+
+    def _decideSmart(self,
+                     completePrice,
+                     index=0,
+                     weight=0,
+                     price=0,
+                     ):
+
+        if (self.res or
+            self.minPrice > price + completePrice or
+            self.capacity < weight):
+            return
+
+        if index == self.size:
+            if weight <= self.capacity and price >= self.minPrice:
+                self.res = True
+            return
+
+        res1 = self._decideSmart(
+            completePrice - self.items[index].price,
+            index+1,
+            weight+self.items[index].weight,
+            price+self.items[index].price,
+        )
+        res2 = self._decideSmart(
+            completePrice - self.items[index].price,
+            index+1,
+            weight,
+            price,
+        )
+
+        return

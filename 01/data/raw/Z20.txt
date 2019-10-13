@@ -1,0 +1,31 @@
+         584687846 function calls (49518 primitive calls) in 347.933 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  347.933  347.933 <string>:1(<module>)
+      500    0.001    0.000  304.364    0.609 Knapsack.py:100(decideStupid)
+527029780/500  304.363    0.000  304.363    0.609 Knapsack.py:104(_decideStupid)
+     1000    0.004    0.000    0.006    0.000 Knapsack.py:126(verifyDecision)
+      500    0.001    0.000   43.491    0.087 Knapsack.py:130(decideSmart)
+57609548/500   43.491    0.000   43.491    0.087 Knapsack.py:136(_decideSmart)
+    20000    0.016    0.000    0.016    0.000 Knapsack.py:2(__init__)
+     1000    0.035    0.000    0.055    0.000 Knapsack.py:8(__init__)
+        2    0.000    0.000    0.000    0.000 _bootlocale.py:11(getpreferredencoding)
+        2    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
+       18    0.000    0.000    0.000    0.000 codecs.py:281(getstate)
+      980    0.001    0.000    0.002    0.000 cp1252.py:18(encode)
+       18    0.000    0.000    0.000    0.000 cp1252.py:22(decode)
+        1    0.007    0.007  347.933  347.933 main.py:6(main)
+       18    0.000    0.000    0.000    0.000 {built-in method _codecs.charmap_decode}
+      980    0.001    0.000    0.001    0.000 {built-in method _codecs.charmap_encode}
+        2    0.000    0.000    0.000    0.000 {built-in method _locale._getdefaultlocale}
+        1    0.000    0.000  347.933  347.933 {built-in method builtins.exec}
+      490    0.004    0.000    0.006    0.000 {built-in method builtins.print}
+        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+    20000    0.002    0.000    0.002    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     1002    0.002    0.000    0.002    0.000 {method 'readline' of '_io.TextIOWrapper' objects}
+     2000    0.005    0.000    0.005    0.000 {method 'split' of 'str' objects}
+
+

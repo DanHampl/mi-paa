@@ -1,0 +1,109 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\LoadClass{article}
+\RequirePackage{todonotes}
+\RequirePackage[parfill]{parskip}
+\RequirePackage[margin=2.8cm]{geometry}
+\RequirePackage{hyperref}
+\RequirePackage[english]{babel}
+\RequirePackage{pgfplots}
+\RequirePackage{listings}
+\RequirePackage{amsfonts}
+\RequirePackage[noabbrev,capitalize,nameinlink]{cleveref}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\title{\textbf{MI-PAA~--~Task 1}\\
+    Decision version of the 0/1 knapsack problem}
+\author{Daniel Hampl (hampldan)}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+The knapsack problem is one of the most widespread NP-Complete problems. It can be described as having a knapsack with a limited capacity and multiple items, where each of these items has a set value and weight. Our task is to fill the knapsack with items of highest combined value possible.
+
+However, we will be focussing on a decision version of this problem. The only difference is that we only have to decide if it is possible to fill up the knapsack with items which have combined value higher or equal to set value, instead of searching for the most efficient combination.
+
+\subsection{Definition\cite{WEBSITE:knapsackDef}}
+We have weight $W$, value $V$ and $n$ items, where item $i$ is described as a pair $(w_i, v_i)$.
+
+\begin{itemize}
+    \item $w_i$ is a weight of object $n_i$
+    \item $v_i$ is a value of object $n_i$
+    \item $w_i, v_i \in \mathbb{N}\setminus\{0\}$
+\end{itemize}
+
+Decide if exists x, where:
+
+\begin{itemize}
+    \item $\sum_i(x_i*v_i) \geq V$
+    \item $\sum_i(x_i*w_i) \leq W$
+    \item $x_i \in \{0,1\} \forall i$
+\end{itemize}
+
+\subsection{Task}
+Implement solution for the decision version of the knapsack problem in two versions.
+
+\begin{itemize}
+    \item Brute force
+    \item Branch and bounds method
+\end{itemize}
+
+Experimentally evaluate the dependence of computational complexity on instance size.
+
+\input{data/tex/fullCalls.tex}
+\input{data/tex/fullTime.tex}
+
+\section{Implementation}
+Both of the algorithms are implemented with the use of recursion as it was easier to implement. However, it might be slightly less efficient than the iterative implementation, which might reflect on results.
+
+Both of these algorithms are implemented in Python 3.7, and all data were gathered on the Windows 10 OS running on Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz.
+
+From \cref{plot:fullCalls} and \cref{plot:fullTime}, we can also see the direct proportionality between time and number of recursion calls.
+
+\subsection{Brute force}
+While using the naive brute force algorithm, we will check all combinations and evaluate if any of them matches the requirements. This is accomplished by creating a virtual binary tree, for example with the use of recursion, where we either insert an element or not. This approach will result in a binary tree, whose leaves will contain all possible combinations of our items.
+
+\newpage
+Afterwards, all we need to do is to validate each leaf for our conditions (maximal weight and minimal value). If at least one element matches set conditions, we can declare the problem to be solved and use any of these combinations as a certificate for our solution. In a case, where none of the leaves matches our conditions, we can declare the problem solved and use all these combinations as proof of inexisting combination matching our conditions. However, for our purpose, we have decided to stop searching once one of the elements matching our conditions was found.
+
+This algorithm is of the $\mathbb{O}(2^n)$ complexity, which can be deduced from the worst possible combinations, where our recursion was called $2*2^n-1$, where both $2$ and $-1$ are constants thus are obsolete, which leads to the final $\mathbb{O}(2^n)$.  This complexity can also be deduced from the definition of a binary tree, from which we can get the maximal number of nodes given a level.
+
+\subsection{Branch and bounds}
+Branch and bounds method is optimised version of the brute force algorithm. In this method, we are limiting the number of combinations we need to test in two ways. The first optimisation we are using is stoping further attempts once the total weight of the items used is greater than the capacity of our knapsack.
+
+In the second optimisation, we are comparing the value we are attempting to achieve and the value which we can still achieve given our current combination. To get the value which we can still achieve, we take the value of our current combination and add the sum of the values of all the remaining elements, which are yet to be considered for the current combination.
+
+The complexity of this algorithm is also $\mathbb{O}(2^n)$, as in the worst case, such as when each of the elements is of greater weight than our knapsack can withstand, we are forced to go through all of the possible combinations to ensure none of them is viable for our requirements. However, if we take a look at \cref{plot:fullCalls} and \cref{plot:fullTime}, we can see the improvement for the average complexity, which was lowered considerably. On the other hand, if we take a look at the hard dataset, the improvement is visible, but not sufficient to show any substantial impact.
+
+% \section{Comparison}
+% For comparison of these two algorithms, we have used two sets of data. The first set contains randomly generated data, which have been marked as squares in \cref{plot:fullCalls} and \cref{plot:fullTime}.
+
+% The second dataset contains data generated purposefully to be hard to resolve. Results from applying both our algorithms have been marked with circles in \cref{plot:fullCalls} and \cref{plot:fullTime}.
+
+% \subsection{Configurations}
+
+% \subsection{Time}
+
+
+\section{Histograms}
+When we take a look at the histograms in \cref{plot:detailStupidNormal,plot:detailSmartNormal,plot:detailStupidHard,plot:detailSmartHard}, we can see the improvement on both the normal and the hard datasets. For both of the datasets, we can see the curve for the branch and bounds algorithm to approximately match the normal distribution as we could expect. On the other hand, histograms for the brute force solutions focus its values near the higher bound of the complexity, as there are nearly no optimisations to allow us to achieve a better result.
+
+\input{data/tex/hist.tex}
+
+\section{Conclusion}
+In conclusion, we have created two implementations for solving the decision version of the 0/1 knapsack problem. We have compared the efficiency of these two implementations (brute force and the branch and bounds optimisation) with respect to processor time and the number of recursion calls. Moreover, we have also compared histograms for two datasets (randomly generated data and purposefully hard data), each for both of our algorithms, showing their complexity and standard behaviour as well as extreme cases.
+
+\newpage
+\bibliographystyle{iso690}
+% \bibliographystyle{csn690}
+% \bibliography{mybibliographyfile}
+\nocite{*} % all entries in the bib file
+\bibliography{database.bib}
+
+\end{document}

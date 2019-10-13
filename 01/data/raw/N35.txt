@@ -1,0 +1,25 @@
+         160462707 function calls (38095 primitive calls) in 123.766 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000  123.766  123.766 <string>:1(<module>)
+      500    0.000    0.000  123.714    0.247 Knapsack.py:130(decideSmart)
+160425112/500  123.714    0.000  123.714    0.247 Knapsack.py:136(_decideSmart)
+    17500    0.012    0.000    0.012    0.000 Knapsack.py:2(__init__)
+      500    0.030    0.000    0.046    0.000 Knapsack.py:8(__init__)
+        2    0.000    0.000    0.000    0.000 _bootlocale.py:11(getpreferredencoding)
+        2    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
+       27    0.000    0.000    0.000    0.000 codecs.py:281(getstate)
+       27    0.000    0.000    0.001    0.000 cp1252.py:22(decode)
+        1    0.003    0.003  123.766  123.766 main.py:6(main)
+       27    0.001    0.000    0.001    0.000 {built-in method _codecs.charmap_decode}
+        2    0.000    0.000    0.000    0.000 {built-in method _locale._getdefaultlocale}
+        1    0.000    0.000  123.766  123.766 {built-in method builtins.exec}
+        2    0.000    0.000    0.000    0.000 {built-in method io.open}
+    17500    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+     1002    0.002    0.000    0.003    0.000 {method 'readline' of '_io.TextIOWrapper' objects}
+      500    0.002    0.000    0.002    0.000 {method 'split' of 'str' objects}
+
+

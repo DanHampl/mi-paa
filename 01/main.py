@@ -1,7 +1,6 @@
 import sys
 import cProfile
 from Knapsack import Knapsack
-from time import time_ns
 
 
 def main():
@@ -17,32 +16,28 @@ def main():
     i=0
     while line:
         # Stupid
-        k = Knapsack(line)
+        # k = Knapsack(line)
 
-        x = time_ns()
-        k.solveStupid()
-        tStupid += time_ns() - x
+        # k.decideStupid()
+        # cProfile.runctx('k.decideStupid()', {}, {'k': k})
 
-        if not k.verify(verify):
-            print(k.id, 'weight:', k.res[0], 'maxWeight:', k.capacity, 'price:', k.res[1], 'minPrice:', k.minPrice, bin(k.res[2]))
+        # if not k.verifyDecision(verify):
+        #     print(k.id)
 
         # Smart
         k = Knapsack(line)
 
-        x = time_ns()
-        k.solveSmart()
-        tSmart += time_ns() - x
+        k.decideSmart()
+        # cProfile.runctx('k.decideSmart()', {}, {'k': k})
 
-        if not k.verify(verify):
-            print(k.id, 'weight:', k.res[0], 'maxWeight:', k.capacity, 'price:', k.res[1], 'minPrice:', k.minPrice, bin(k.res[2]))
+        # if not k.verifyDecision(verify):
+        #     print(k.id)
         i+=1
         line = problems.readline()
         verify = solutions.readline()
 
-    print(tSmart, tStupid)
-
 
 if __name__ == "__main__":
-    for i in range(100):
+    for i in range(1):
         cProfile.run('main()')
     # main()
