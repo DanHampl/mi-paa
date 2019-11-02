@@ -1,0 +1,43 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel=Items in set,
+			ylabel=Average deviation in \%,
+			scatter/classes={
+				fptas1={mark=square*,blue},
+				% fptas2={mark=square*,red},
+				fptas3={mark=square*,green},
+				% fptas4={mark=square*,yellow},
+				fptas5={mark=square*,black},
+				% fptas6={mark=o,blue},
+				% fptas7={mark=o,red},
+				% fptas8={mark=o,green},
+				% fptas9={mark=o,yellow},
+				fptas10={mark=o,black},
+				% fptas11={mark=triangle*,blue},
+				% fptas12={mark=triangle*,red},
+				% fptas13={mark=triangle*,green},
+				% fptas14={mark=triangle*,yellow},
+				fptas15={mark=triangle*,black},
+				% fptas16={mark=x,blue},
+				% fptas17={mark=x,red},
+				% fptas18={mark=x,green},
+				fptas19={mark=x,yellow}
+				}
+            ]
+            \input{data/procFptasDeviation.tex}
+			\addlegendentry{$\epsilon = 0.1$}
+			\addlegendentry{$\epsilon = 0.3$}
+			\addlegendentry{$\epsilon = 0.5$}
+			\addlegendentry{$\epsilon = 1.0$}
+			\addlegendentry{$\epsilon = 1.5$}
+			\addlegendentry{$\epsilon = 1.9$}
+		\end{axis}
+	\end{tikzpicture}
+\caption{Average deviation depending on number of items in set}
+\label{plot:devFptas}
+\end{figure}

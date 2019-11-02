@@ -1,0 +1,157 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{semilogyaxis}[
+			xlabel=Items in set,
+			ylabel=Seconds per set,
+			scatter/classes={
+				fptas1={mark=square*,blue},
+				fptas2={mark=square*,red},
+				fptas3={mark=square*,green},
+				fptas4={mark=square*,yellow},
+				fptas5={mark=square*,black},
+				fptas6={mark=o,blue},
+				fptas7={mark=o,red},
+				fptas8={mark=o,green},
+				fptas9={mark=o,yellow},
+				fptas10={mark=o,black},
+				fptas11={mark=triangle*,blue},
+				fptas12={mark=triangle*,red},
+				fptas13={mark=triangle*,green},
+				fptas14={mark=triangle*,yellow},
+				fptas15={mark=triangle*,black},
+				fptas16={mark=x,blue},
+				fptas17={mark=x,red},
+				fptas18={mark=x,green},
+				fptas19={mark=x,yellow}
+				}
+			]
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+                x y label
+                4 .000006 fptas1
+                10 .000466 fptas1
+                15 .005497 fptas1
+                20 .014502 fptas1
+                22 .033406 fptas1
+                25 .058647 fptas1
+
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+            x y label
+            4 .000002 fptas2
+            10 .000147 fptas2
+            15 .001393 fptas2
+            20 .004428 fptas2
+            22 .008498 fptas2
+            25 .014329 fptas2
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+                x y label
+4 .000001 fptas3
+10 .000079 fptas3
+15 .000657 fptas3
+20 .002034 fptas3
+22 .003628 fptas3
+25 .006180 fptas3
+
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+                x y label
+4 .000001 fptas4
+10 .000051 fptas4
+15 .000365 fptas4
+20 .001165 fptas4
+22 .001910 fptas4
+25 .003472 fptas4
+
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+                x y label
+4 .000001 fptas5
+10 .000039 fptas5
+15 .000233 fptas5
+20 .000744 fptas5
+22 .001250 fptas5
+25 .002219 fptas5
+
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {x y label
+            4 0 fptas6
+            10 .000023 fptas6
+            15 .000173 fptas6
+            20 .000525 fptas6
+            22 .000801 fptas6
+            25 .001519 fptas6
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {x y label
+            4 0 fptas7
+            10 .000021 fptas7
+            15 .000129 fptas7
+            20 .000382 fptas7
+            22 .000619 fptas7
+            25 .001202 fptas7
+            
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {x y label
+            4 0 fptas8
+            10 .000016 fptas8
+            15 .000098 fptas8
+            20 .000316 fptas8
+            22 .000495 fptas8
+            25 .000935 fptas8
+            
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {x y label
+            4 0 fptas9
+            10 .000019 fptas9
+            15 .000088 fptas9
+            20 .000258 fptas9
+            22 .000399 fptas9
+            25 .000648 fptas9
+            
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {x y label
+            4 0 fptas10
+            10 .000016 fptas10
+            15 .000068 fptas10
+            20 .000218 fptas10
+            22 .000353 fptas10
+            25 .000597 fptas10
+            
+			};
+			% \addlegendentry{Dynamic price optimisation on random data}
+			% \addlegendentry{FPTAS on random data}
+			% \addlegendentry{Greedy heuristics on random data}
+			% \addlegendentry{Single highest priced item on random data}
+			% \addlegendentry{Dynamic price optimisation on hard data}
+			% \addlegendentry{FPTAS on hard data}
+			% \addlegendentry{Greedy heuristics on hard data}
+			% \addlegendentry{Single highest priced item on hard data}
+		\end{semilogyaxis}
+	\end{tikzpicture}
+\caption{Time needed depending on number of items in set}
+\label{plot:fullTime}
+\end{figure}

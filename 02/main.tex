@@ -1,0 +1,119 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\LoadClass{article}
+\RequirePackage{todonotes}
+\RequirePackage[parfill]{parskip}
+\RequirePackage[margin=2.8cm]{geometry}
+\RequirePackage{hyperref}
+\RequirePackage[english]{babel}
+\RequirePackage{pgfplots}
+\RequirePackage{listings}
+\RequirePackage{amsfonts}
+\RequirePackage[noabbrev,capitalize,nameinlink]{cleveref}
+\RequirePackage{subfiles}
+\RequirePackage{mathtools}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\title{\textbf{MI-PAA~--~Task 2}\\
+    Optimisation version of the 0/1 knapsack problem}
+\author{Daniel Hampl (hampldan)}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+The knapsack problem is one of the most widespread NP-Complete problems. It can be described as having a knapsack with a limited capacity and multiple items, where each of these items has a set value and weight. Our task is to fill the knapsack with items of highest combined value possible.
+
+In this paper, we will be focussing approximation algorithms solving the knapsack problem and the deviation of results provided by these approximation algorithms.
+
+\subsection{Definition\cite{WEBSITE:knapsackDef}}
+We have weight $W$ and $n$ items, where item $i$ is described as a pair $(w_i, v_i)$.
+
+\begin{itemize}
+    \item $w_i$ is a weight of object $n_i$
+    \item $v_i$ is a value of object $n_i$
+    \item $w_i, v_i \in \mathbb{N}\setminus\{0\}$
+\end{itemize}
+
+Find value $V$, where:
+
+\begin{itemize}
+    \item $\sum_i(x_i*v_i) = V$
+    \item $\sum_i(x_i*w_i) \leq W$
+    \item $x_i \in \{0,1\} \forall i$
+\end{itemize}
+
+\subsection{Task}
+Implement solution for the optimisation version of the knapsack problem in four versions.
+
+\begin{itemize}
+    \item Dynamic programing with decomposition by value or weight
+    \item Simple greedy heuristic approximation
+    \item Modification of this greedy heuristics, where only the single most valuable item is selected
+    \item FPTAS algorithm
+\end{itemize}
+
+Experimentally evaluate the dependence of computational complexity on instance size. And deviation of results provided by approximation algorithms as compared to the exact results. 
+
+\input{data/tex/fullTime.tex}
+
+\input{data/tex/cutTime.tex}
+
+\input{data/tex/deviation.tex}
+
+\input{data/tex/deviationCut.tex}
+
+% \input{data/tex/deviationCut2.tex}
+
+
+\section{Implementation}
+All of these algorithms are implemented in Python 3.7, and all data were gathered on the Windows 10 OS running on Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz.
+
+For testing of these algorithms, we have used two data sets. The first one with randomly generated values and the second with purposefully hard data. However, in the randomly generated set, we can see a deviation in the dataset with twenty items. This deviation can be seen in \cref{plot:deviation,plot:deviation2}.
+
+\subsection{Dynamic programing}
+Our task was to use dynamic programming for solving the optimisation version of the 0/1 knapsack problem, for which we have selected the decomposition by value, due to its similarity with the FPTAS algorithm.
+
+For more information about Dynamic programming or exact algorithm, feel free to look at the code attached or \cite[Moodle textbook]{WEBSITE:dynamicKnapsack}.
+
+\subsection{Greedy heuristics}
+The greedy algorithm sorts the elements given at input by the value to weight ratio. It adds as many elements as possible with the preference given to the items with the highest value and lowest weight.
+
+This approach might not seem too precise, but it definitely provides us with the greatest balance in speed and precision. It allows us to achieve reasonably precise results with $\mathbb{O}(n \log(n))$ complexity. Furthermore, the average precision of this algorithm steadily grows with the number of elements in a set.
+
+\subsection{Single most valuable item}
+This is the fastest and the least precise algorithm of those we are considering in this paper. The main idea behind this algorithm is to select one element of the highest value independent on weight. This algorithm can be precise in cases, where we have multiple low-valued items and one of high value.
+
+However, this algorithm is highly unreliable, and I wouldn't recommend using it in any case. It might offer linear complexity, yet the average deviation appeared to be above 50\% in most of our test cases and in one case even surpassed 125\%.
+
+\subsection{FPTAS}
+In our implementation of this algorithm, we have decided to shift the values by a set number of bits to the right. This number was in turn calculated by taking the average of all the item values in a set and dividing the number of highest bit by five. This approach has been used only for data in \cref{plot:fullTime,plot:cutTime,plot:deviation,plot:deviation1}. In order to gain precise data for selected maximal imprecisions, we have used the following formula.
+
+\begin{itemize}
+    \item $C_M = $max$\{c_1,c_2, ... c_n\}$
+    \item $K = \dfrac{\epsilon C_M}{n}$
+    \item $c_i' = \lfloor\dfrac{c_i}{K}\rfloor$
+\end{itemize}
+
+In \cref{plot:fptasTime,plot:devFptas} we can see the average time complexity and imprecision, respectively. From these graphs, we can clearly see the lowering time complexity with higher imprecision, as well as the lowering average imprecision, as the size of the set grows. 
+% \input{data/tex/fptasRatio.tex}
+\input{data/tex/fptasTime.tex}
+\input{data/tex/fptasDeviation.tex}
+% \input{data/tex/fptasMaxDeviation.tex}
+
+\section{Conclusion}
+In conclusion, we have created four implementations for solving the optimisation version of the 0/1 knapsack problem. We have compared the efficiency of these four implementations with respect to processor time and their precision. This comparison was made on randomly generated data set as well as on a purposefully hard dataset. However, the difference between those two datasets did not appear to be particularly apparent, which might have been caused by the concrete implementation.
+
+Furthermore,  we have also compared the time complexity and the imprecision within the FPTAS algorithm for multiple maximal imprecisions. From these, we have selected few to show in \cref{plot:fptasTime,plot:devFptas}.
+
+\newpage
+\bibliographystyle{iso690}
+\nocite{*} % all entries in the bib file
+\bibliography{database.bib}
+
+\end{document}

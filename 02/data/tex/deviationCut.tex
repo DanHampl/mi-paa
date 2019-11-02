@@ -1,0 +1,93 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel=Items in set,
+			ylabel=Average deviation in \%,
+			scatter/classes={
+				fptasN={mark=square*,blue},
+				hungryN={mark=square*,green},
+				fptasH={mark=o,blue},
+				hungryH={mark=o,green}
+				}
+			]
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+                x y label
+                4 .095931 fptasN
+                10 .085455 fptasN
+                15 .091002 fptasN
+                20 .145440 fptasN
+                22 .089912 fptasN
+                25 .091948 fptasN
+                27 .091139 fptasN
+                30 .089941 fptasN
+                32 .092691 fptasN
+                35 .092870 fptasN
+                37 .093395 fptasN
+                40 .094362 fptasN
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+				x y label
+				4 1.453410 hungryN
+                10 1.304166 hungryN
+                15 .968396 hungryN
+                20 .860422 hungryN
+                22 .778518 hungryN
+                25 .724522 hungryN
+                27 .691782 hungryN
+                30 .529006 hungryN
+                32 .596280 hungryN
+                35 .557696 hungryN
+                37 .469084 hungryN
+                40 .481640 hungryN
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+				x y label
+				4 .123029 fptasH
+                10 .127224 fptasH
+                15 .130156 fptasH
+                20 .129032 fptasH
+                22 .129395 fptasH
+                25 .128979 fptasH
+                27 .127454 fptasH
+                30 .128554 fptasH
+                32 .129028 fptasH
+                35 .129171 fptasH
+                37 .128856 fptasH
+                40 .128841 fptasH
+			};
+			\addplot[scatter,%
+				scatter src=explicit symbolic]%
+			table[meta=label] {
+				x y label
+				4 12.939740 hungryH
+                10 9.023060 hungryH
+                15 6.139760 hungryH
+                20 4.991380 hungryH
+                22 4.266580 hungryH
+                25 3.821660 hungryH
+                27 3.664740 hungryH
+                30 3.409840 hungryH
+                32 3.063500 hungryH
+                35 2.788140 hungryH
+                37 2.510400 hungryH
+                40 2.398320 hungryH
+			};
+			\addlegendentry{FPTAS on random data}
+			\addlegendentry{Greedy heuristics on random data}
+			\addlegendentry{FPTAS on hard data}
+			\addlegendentry{Greedy heuristics on hard data}
+		\end{axis}
+	\end{tikzpicture}
+\caption{Average deviation in FPTAS algorithm and greedy heuristics}
+\label{plot:deviation1}
+\end{figure}

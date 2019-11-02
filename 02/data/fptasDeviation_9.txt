@@ -1,0 +1,7 @@
+x y label
+4 12.953688 fptas9
+10 5.975660 fptas9
+15 4.804350 fptas9
+20 3.408386 fptas9
+22 3.195510 fptas9
+25 2.989100 fptas9

@@ -1,0 +1,7 @@
+x y label
+4 0.12754 fptas16
+10 0.0978 fptas16
+15 0.03348 fptas16
+20 0.04418 fptas16
+22 0.02148 fptas16
+25 0.0357 fptas16

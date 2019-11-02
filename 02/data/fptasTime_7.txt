@@ -1,0 +1,7 @@
+x y label
+4 .000008 fptas7
+10 .000104 fptas7
+15 .000466 fptas7
+20 .001128 fptas7
+22 .001560 fptas7
+25 .002772 fptas7

@@ -1,0 +1,95 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+        \begin{axis}[
+			xlabel=Recursions called,
+			ylabel=Count,
+            axis on top,
+            ybar interval,
+            x tick label as interval=false,
+            xtick={},
+            grid=none
+        ]
+
+        \addplot+[hist={data=x}]
+        file {data/dataSetDetailCalls_stupid.txt};
+		\end{axis}
+	\end{tikzpicture}
+\caption{Histogram for normal data set of 4 elements per instance with brute force algorithm}
+\label{plot:detailStupidNormal}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+        \begin{axis}[
+			xlabel=Recursions called,
+			ylabel=Count,
+            axis on top,
+            ybar interval,
+            x tick label as interval=false,
+            xtick={},
+            grid=none
+        ]
+
+        \addplot+[hist={data=x}]
+        file {data/dataSetDetailCalls_smart.txt};
+		\end{axis}
+	\end{tikzpicture}
+\caption{Histogram for normal data set of 4 elements per instance with B\&B algorithm}
+\label{plot:detailSmartNormal}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+        \begin{axis}[
+			xlabel=Recursions called,
+			ylabel=Count,
+            axis on top,
+            ybar interval,
+            x tick label as interval=false,
+            xtick={},
+            grid=none
+        ]
+
+        \addplot+[hist={data=x}]
+        file {data/dataSetDetailCallsHard_stupid.txt};
+		\end{axis}
+	\end{tikzpicture}
+\caption{Histogram for hard data set of 4 elements per instance with brute force algorithm}
+\label{plot:detailStupidHard}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+        \begin{axis}[
+			xlabel=Recursions called,
+			ylabel=Count,
+            axis on top,
+            ybar interval,
+            x tick label as interval=false,
+            xtick={},
+            grid=none
+        ]
+
+        \addplot+[hist={data=x}]
+        file {data/dataSetDetailCallsHard_smart.txt};
+		\end{axis}
+	\end{tikzpicture}
+\caption{Histogram for hard data set of 4 elements per instance with B\&B algorithm}
+\label{plot:detailSmartHard}
+\end{figure}
