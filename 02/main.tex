@@ -62,11 +62,11 @@ Experimentally evaluate the dependence of computational complexity on instance s
 
 \input{data/tex/fullTime.tex}
 
-\input{data/tex/cutTime.tex}
+% \input{data/tex/cutTime.tex}
 
 \input{data/tex/deviation.tex}
 
-\input{data/tex/deviationCut.tex}
+% \input{data/tex/deviationCut.tex}
 
 % \input{data/tex/deviationCut2.tex}
 
@@ -84,7 +84,7 @@ For more information about Dynamic programming or exact algorithm, feel free to 
 \subsection{Greedy heuristics}
 The greedy algorithm sorts the elements given at input by the value to weight ratio. It adds as many elements as possible with the preference given to the items with the highest value and lowest weight.
 
-This approach might not seem too precise, but it definitely provides us with the greatest balance in speed and precision. It allows us to achieve reasonably precise results with $\mathbb{O}(n \log(n))$ complexity. Furthermore, the average precision of this algorithm steadily grows with the number of elements in a set.
+This approach might not seem too precise, but it offers much lower complexity with $\mathbb{O}(n \log(n))$, where the most complex task is to sort the data.
 
 \subsection{Single most valuable item}
 This is the fastest and the least precise algorithm of those we are considering in this paper. The main idea behind this algorithm is to select one element of the highest value independent on weight. This algorithm can be precise in cases, where we have multiple low-valued items and one of high value.
@@ -92,7 +92,13 @@ This is the fastest and the least precise algorithm of those we are considering 
 However, this algorithm is highly unreliable, and I wouldn't recommend using it in any case. It might offer linear complexity, yet the average deviation appeared to be above 50\% in most of our test cases and in one case even surpassed 125\%.
 
 \subsection{FPTAS}
-In our implementation of this algorithm, we have decided to shift the values by a set number of bits to the right. This number was in turn calculated by taking the average of all the item values in a set and dividing the number of highest bit by five. This approach has been used only for data in \cref{plot:fullTime,plot:cutTime,plot:deviation,plot:deviation1}. In order to gain precise data for selected maximal imprecisions, we have used the following formula.
+
+The FPTAS algorithm is basically the same as the decomposition by price used in dynamic programming.
+The only difference here is that we lower the values of all the items, which lowers the complexity
+of the algorithm and in this case, allows us to limit the imprecision.
+
+In \cref{plot:fullTime,plot:deviation} we have set the highest deviation to be 0.5 and from 0.1 to 0.9 for \cref{plot:fptasTime,plot:devFptas}.
+In order to gain precise data for selected maximal imprecisions, we have used the following formula.
 
 \begin{itemize}
     \item $C_M = $max$\{c_1,c_2, ... c_n\}$

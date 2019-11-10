@@ -200,18 +200,28 @@ class Knapsack(object):
                 price += i.price
         return price
 
-        def deviation(self, exactResult):
-            if exactResult == 0:
-                if self.res == 0:
-                    return 0.0
+    def deviation(self, exactResult):
+        if exactResult == 0:
+            if self.res == 0:
                 return 0.0
-            return abs((exactResult-self.res)/exactResult)*100
+            return 100.0
+        return abs((exactResult-self.res)/exactResult)*100
 
     def solveSingle(self):
         self.res = self._solveSingle()
 
     def _solveSingle(self):
-        return max(self.items, key=lambda x: x.price).price
+        self.items.sort(key=lambda x: x.weight/x.price)
+        price = 0
+        weight = 0
+        maxSingle = 0
+        for i in self.items:
+            if (weight + i.weight) <= self.capacity:
+                weight += i.weight
+                price += i.price
+            if (i.weight > maxSingle):
+                maxSingle = i.weight
+        return price if price > maxSingle else maxSingle
 
     def fptas(self, maxDev):
         maxPrice = 0

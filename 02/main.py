@@ -27,23 +27,23 @@ def main():
 
         res = k.res
 
-        # # greedy heuristics
+        # greedy heuristics
         # k = Knapsack(line)
 
         # k.solveHungry()
         # print(f'{k.id} hungryStupidDeviation {k.deviation(res):.4}')
 
-        # # greedy heuristics
-        # k = Knapsack(line)
-
-        # k.solveSingle()
-        # print(f'{k.id} singleDeviation {k.deviation(res):.4}')
-
-        # fptas
+        # greedy heuristics
         k = Knapsack(line)
 
-        k.fptas(maxDev)
-        print(f'{k.id} fptasDeviation {k.deviation(res):.4}')
+        k.solveSingle()
+        print(f'{k.id} singleDeviation {k.deviation(res):.4}')
+
+        # # fptas
+        # k = Knapsack(line)
+
+        # k.fptas(maxDev)
+        # print(f'{k.id} fptasDeviation {k.deviation(res):.4}')
 
         line = problems.readline()
         verify = solutions.readline()

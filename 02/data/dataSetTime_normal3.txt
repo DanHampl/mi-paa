@@ -1,0 +1,12 @@
+4 .000002 singleN
+10 .000006 singleN
+15 .000010 singleN
+20 .000010 singleN
+22 .000012 singleN
+25 .000012 singleN
+27 .000014 singleN
+30 .000014 singleN
+32 .000014 singleN
+35 .000016 singleN
+37 .000016 singleN
+40 .000018 singleN

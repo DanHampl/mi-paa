@@ -1,0 +1,12 @@
+4 .000002 singleH
+10 .000006 singleH
+15 .000010 singleH
+20 .000012 singleH
+22 .000012 singleH
+25 .000014 singleH
+27 .000014 singleH
+30 .000016 singleH
+32 .000016 singleH
+35 .000018 singleH
+37 .000020 singleH
+40 .000020 singleH

@@ -1,0 +1,12 @@
+4 9.641260 singleN
+10 2.904160 singleN
+15 1.568396 singleN
+20 5.388420 singleN
+22 .778518 singleN
+25 .924522 singleN
+27 1.091782 singleN
+30 1.329006 singleN
+32 .796280 singleN
+35 .757696 singleN
+37 .469084 singleN
+40 .681640 singleN
