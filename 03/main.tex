@@ -1,0 +1,245 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\LoadClass{article}
+\RequirePackage{todonotes}
+\RequirePackage[parfill]{parskip}
+\RequirePackage[margin=2.8cm]{geometry}
+\RequirePackage{hyperref}
+\RequirePackage[english]{babel}
+\RequirePackage{pgfplots}
+\RequirePackage{listings}
+\RequirePackage{amsfonts}
+\RequirePackage[noabbrev,capitalize,nameinlink]{cleveref}
+\RequirePackage{subfiles}
+\RequirePackage{mathtools}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\title{\textbf{MI-PAA~--~Task 3}\\
+Comparison of various algoritms solving the optimisation version of the 0/1 knapsack problem}
+\author{Daniel Hampl (hampldan)}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+The knapsack problem is one of the most widespread NP-Complete problems. It can be described as having a knapsack with a limited capacity and multiple items, where each of these items has a set value and weight. Our task is to fill the knapsack with items of highest combined value possible.
+
+In this paper, we will be focussing approximation algorithms solving the knapsack problem and the deviation of results provided by these approximation algorithms.
+
+\subsection{Definition\cite{WEBSITE:knapsackDef}}
+We have weight $W$ and $n$ items, where item $i$ is described as a pair $(w_i, v_i)$.
+
+\begin{itemize}
+    \item $w_i$ is a weight of object $n_i$
+    \item $v_i$ is a value of object $n_i$
+    \item $w_i, v_i \in \mathbb{N}\setminus\{0\}$
+\end{itemize}
+
+Find value $V$, where:
+
+\begin{itemize}
+    \item $\sum_i(x_i*v_i) = V$
+    \item $\sum_i(x_i*w_i) \leq W$
+    \item $x_i \in \{0,1\} \forall i$
+\end{itemize}
+
+\subsection{Task}
+Compare various algorithms for solving the optimisation version of the 0/1 knapsack problem
+with respect to their efficiency and imprecision of the approximation algorithms. Moreover,
+observe the dependency of those algorithms on different datasets.
+
+\begin{itemize}
+    \item Dynamic programing with decomposition by value or weight
+    \item Simple greedy heuristic approximation
+    \item Modification of this greedy heuristics, where only the single most valuable item is selected
+    \item FPTAS algorithm
+\end{itemize}
+
+Experimentally evaluate the dependence of computational complexity on instance size. And deviation of results provided by approximation algorithms as compared to the exact results.
+
+\input{tex/deviation/balanced.tex}
+\input{tex/deviation/bigKnapsack.tex}
+\input{tex/deviation/correlationStrong.tex}
+\input{tex/deviation/correlationWeak.tex}
+\input{tex/deviation/heavy.tex}
+\input{tex/deviation/light.tex}
+\input{tex/deviation/smallItems.tex}
+\input{tex/deviation/smallItemsSmallKnapsack.tex}
+\input{tex/deviation/smallKnapsack.tex}
+
+\input{tex/time/balanced.tex}
+\input{tex/time/bigKnapsack.tex}
+\input{tex/time/correlationStrong.tex}
+\input{tex/time/correlationWeak.tex}
+\input{tex/time/heavy.tex}
+\input{tex/time/light.tex}
+\input{tex/time/smallItems.tex}
+\input{tex/time/smallItemsSmallKnapsack.tex}
+\input{tex/time/smallKnapsack.tex}
+
+
+\section{Implementation}
+All of these algorithms are implemented in Python 3.7, and all data were gathered on the Windows10
+OS running on Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz.
+
+
+\subsection{Brute force}
+While using the naive brute force algorithm, we will check all combinations
+and evaluate if any of them matches the requirements. This is accomplished
+by creating a virtual binary tree, for example with the use of recursion,
+where we either insert an element or not. This approach will result in a
+binary tree, whose leaves will contain all possible combinations of our items.
+
+
+\subsection{Branch and bounds}
+Branch and bounds method is optimised version of the brute force algorithm.
+In this method, we are limiting the number of combinations we need to test
+in two ways. The first optimisation we are using is stoping further attempts
+once the total weight of the items used is greater than the capacity of our
+knapsack.
+
+In the second optimisation, we are comparing the value we are attempting
+to achieve and the value which we can still achieve given our current
+combination. To get the value which we can still achieve, we take the
+value of our current combination and add the sum of the values of all
+the remaining elements, which are yet to be considered for the current
+combination.
+
+The complexity of this algorithm is also $\mathbb{O}(2^n)$, as in the
+worst case, such as when we get a list of elements with low weight and
+low value with the last element of high weight and value, we are forced
+to go through all of the possible combinations to ensure none of them is
+viable for our requirements.
+
+
+\subsection{Dynamic programing}
+Our task was to use dynamic programming for solving the optimisation version of the 0/1 knapsack
+problem, for which we have selected the decomposition by value, due to its similarity with the
+FPTAS algorithm.
+
+For more information about Dynamic programming or exact algorithm, feel free to look at the code
+attached or \cite[Moodle textbook]{WEBSITE:dynamicKnapsack}.
+
+\subsection{Greedy heuristics}
+The greedy algorithm sorts the elements given at input by the value to weight ratio. It adds as many
+elements as possible with the preference given to the items with the highest value and lowest weight.
+
+This approach might not seem too precise, but it offers much lower complexity with $\mathbb{O}(n \log(n))$,
+where the most complex task is to sort the data.
+
+\subsection{Single most valuable item}
+This is the fastest and the least precise algorithm of those we are considering in this paper.
+The main idea behind this algorithm is to select one element of the highest value independent
+on weight. This algorithm can be precise in cases, where we have multiple low-valued items and one of high value.
+
+However, this algorithm is highly unreliable, and I wouldn't recommend using it in any case.
+It might offer linear complexity, yet the average deviation appeared to be above 50\%
+in most of our test cases and in one case even surpassed 125\%.
+
+\subsection{FPTAS}
+
+The FPTAS algorithm is basically the same as the decomposition by price used in dynamic programming.
+The only difference here is that we lower the values of all the items, which lowers the complexity
+of the algorithm and in this case, allows us to limit the imprecision. For the purposes of our measurement
+we have set the highest deviation to be 0.5.
+
+In order to gain precise data for selected maximal imprecision, we have used the following formula.
+
+\begin{itemize}
+    \item $C_M = $max$\{c_1,c_2, ... c_n\}$
+    \item $K = \dfrac{\epsilon C_M}{n}$
+    \item $c_i' = \lfloor\dfrac{c_i}{K}\rfloor$
+\end{itemize}
+
+
+\section{Data dependence}
+\subsection{Datasets}
+For datasets generation, we have used the provided generator\cite{WEBSITE:dataGen} with the following parameters.
+
+Balanced dataset:\\
+\texttt{\$GEN -N 500 -n \$i -W 38713 -C 38713 -m 0.8 -w bal -c uni}
+
+Dataset with predominant light elements:\\
+\texttt{\$GEN -N 500 -n \$i -W 38713 -C 38713 -m 0.8 -w light -c uni}
+
+Dataset with predominant heavy elements:\\
+\texttt{\$GEN -N 500 -n \$i -W 38713 -C 38713 -m 0.8 -w heavy -c uni}
+
+Dataset with low correlation:\\
+\texttt{\$GEN -N 500 -n \$i -W 38713 -C 38713 -m 0.8 -w bal -c corr}
+
+Dataset with high correlation:\\
+\texttt{\$GEN -N 500 -n \$i -W 38713 -C 38713 -m 0.8 -w bal -c strong}
+
+Dataset with big knapsack:\\
+\texttt{\$GEN -N 500 -n \$i -W 38713 -C 38713 -m 0.95 -w bal -c uni}
+
+Dataset with small knapsack:\\
+\texttt{\$GEN -N 500 -n \$i -W 38713 -C 38713 -m 0.3 -w bal -c uni}
+
+Dataset with items of low weight and price:\\
+\texttt{\$GEN -N 500 -n \$i -W 100 -C 100 -m 0.8 -w bal -c uni}
+
+Dataset with items with low weight and price as well as small knapsack:\\
+\texttt{\$GEN -N 500 -n \$i -W 100 -C 100 -m 0.3 -w bal -c uni}
+
+
+\subsection{Dynamic algorithm}
+As we can see in \cref{plot:balancedTime,plot:bigKnapsackTime,plot:correlationWeakTime,plot:heavyTime,plot:correlationStrongTime,plot:smallItemsTime,plot:smallKnapsackTime,plot:lightTime,plot:smallItemsSmallKnapsackTime},
+the dynamic algorithm has fairly high time complexity. This relatively high complexity
+is here due to our datasets having particularly high valued elements. Moreover, when we
+set our maximal Weight and Price to lower values, we can see the complexity lowering significantly.
+
+\subsection{FPTAS algorithm}
+When we take a look at the fptas algorithm, we can see its indifference to any changes on our datasets.
+This case might be caused by our implementation of the said algorithm, where we use a dictionary
+for storing values instead of the usual array.
+
+\subsection{Brute force algorithm}
+The brute force algorithm is indifferent to any changes to a dataset by design, as it has to test
+every option before returning our solution, thus having the same average time complexity in all
+our test cases.
+
+\subsection{Branch \& bounds algorithm}
+As we observe the branch and bounds algorithm, we can see its relatively low complexity,
+which is mostly thanks to our data having considerably high knapsack with the 0.8 ratio
+between knapsacks load capacity and the combined weight of all the items. Thanks to this
+setup, the B\&B algorithm can skip a significant part of combinations, as it can add most
+of the elements. This difference can be well observed at
+\cref{plot:bigKnapsackTime,plot:smallKnapsackTime}.
+
+\subsection{Greedy heuristics}
+The greedy heuristics, as well as its modification, shows noteworthy dependence on dataset
+variations. When we take a look at \cref{plot:correlationWeakDeviation,plot:correlationStrongDeviation},
+we can observe the growing imprecision, as items in our datasets correlate from our middle ground.
+
+Moreover, we can see another divergence when we take a look at
+\cref{plot:smallKnapsackDeviation,plot:bigKnapsackDeviation}. We can see noticeable imprecision,
+which is caused by having a small knapsack, which in turn means that the algorithm has to select
+a lesser amount of items from a bigger pool, which introduces the higher possibility of a mistake.
+
+On the other hand, this dependency appears only while observing the imprecision. While we are
+looking at the time complexity for each dataset, the greedy heuristics, as well as its modification,
+shows minimal deviation, as it always holds on to its complexity of  $\Theta($log $n)$.
+
+
+\section{Conclusion}
+In conclusion, we have tested six different algorithms for solving the optimisation version
+of the 0/1 knapsack problem on nine different datasets providing comprehensive examples for
+various dependencies of imprecision, as well as time complexity to given alterations of our
+datasets. Furthermore, we have described these dependencies, as well as provided multiple
+examples with their graphic representation and substantiated these dependencies for eac
+dataset and its variables.
+
+
+\newpage
+\bibliographystyle{iso690}
+\nocite{*} % all entries in the bib file
+\bibliography{database.bib}
+
+\end{document}

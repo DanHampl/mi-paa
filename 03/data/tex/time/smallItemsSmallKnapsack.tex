@@ -1,0 +1,43 @@
+
+\addplot[scatter,scatter src=explicit symbolic]table[meta=label] {
+x y label
+4 .000010 solvePriceDynamic
+10 .000354 solvePriceDynamic
+15 .001752 solvePriceDynamic
+20 .005214 solvePriceDynamic
+};
+\addplot[scatter,scatter src=explicit symbolic]table[meta=label] {
+x y label
+4 .000002 solveHungry
+10 .000004 solveHungry
+15 .000006 solveHungry
+20 .000008 solveHungry
+};
+\addplot[scatter,scatter src=explicit symbolic]table[meta=label] {
+x y label
+4 .000002 solveSingle
+10 .000004 solveSingle
+15 .000006 solveSingle
+20 .000010 solveSingle
+};
+\addplot[scatter,scatter src=explicit symbolic]table[meta=label] {
+x y label
+4 .000010 fptas
+10 .000148 fptas
+15 .000574 fptas
+20 .002066 fptas
+};
+\addplot[scatter,scatter src=explicit symbolic]table[meta=label] {
+x y label
+4 .000022 solveStupid
+10 .001406 solveStupid
+15 .042446 solveStupid
+20 1.688980 solveStupid
+};
+\addplot[scatter,scatter src=explicit symbolic]table[meta=label] {
+x y label
+4 .000014 solveSmart
+10 .000244 solveSmart
+15 .002384 solveSmart
+20 .030484 solveSmart
+};

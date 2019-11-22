@@ -1,0 +1,24 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel=Items in set,
+			ylabel=Average imprecision in \%,
+			scatter/classes={
+				hungryStupidDeviation={mark=square*,blue},
+				singleDeviation={mark=square*,green},
+				fptasDeviation={mark=square*,red}
+				}
+            ]
+            \input{data/tex/deviation/smallItemsSmallKnapsack.tex}
+			\addlegendentry{Greedy heuristics}
+			\addlegendentry{Modified greedy heuristics}
+			\addlegendentry{FPTAS}
+		\end{axis}
+	\end{tikzpicture}
+\caption{Average imprecision on data with small items and small knapsack}
+\label{plot:smallItemsSmallKnapsackDeviation}
+\end{figure}

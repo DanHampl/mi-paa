@@ -1,0 +1,24 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel=Items in set,
+			ylabel=Average imprecision in \%,
+			scatter/classes={
+				hungryStupidDeviation={mark=square*,blue},
+				singleDeviation={mark=square*,green},
+				fptasDeviation={mark=square*,red}
+				}
+            ]
+            \input{data/tex/deviation/correlationStrong.tex}
+			\addlegendentry{Greedy heuristics}
+			\addlegendentry{Modified greedy heuristics}
+			\addlegendentry{FPTAS}
+		\end{axis}
+	\end{tikzpicture}
+\caption{Average imprecision on data with strong correlation}
+\label{plot:correlationStrongDeviation}
+\end{figure}

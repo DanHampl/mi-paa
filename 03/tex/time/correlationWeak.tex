@@ -1,0 +1,30 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{semilogyaxis}[
+			xlabel=Items in set,
+			ylabel=Seconds per set,
+			scatter/classes={
+				solvePriceDynamic={mark=square*,blue},
+				solveHungry={mark=square*,green},
+				solveSingle={mark=square*,red},
+				fptas={mark=o,blue},
+				solveStupid={mark=o,green},
+				solveSmart={mark=o,red}
+				}
+            ]
+            \input{data/tex/time/correlationWeak.tex}
+			\addlegendentry{Dynamic algorithm}
+			\addlegendentry{Greedy heuristics}
+			\addlegendentry{Modified greedy heuristics}
+			\addlegendentry{FPTAS}
+			\addlegendentry{Brute force}
+			\addlegendentry{Branch \& bounds}
+		\end{semilogyaxis}
+	\end{tikzpicture}
+\caption{Average time per set with weak correlation}
+\label{plot:correlationWeakTime}
+\end{figure}

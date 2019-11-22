@@ -2,4 +2,4 @@ build
 *.out
 .vscode
 __pycache__
-
+*.o
