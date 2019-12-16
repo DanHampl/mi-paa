@@ -1,0 +1,24 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel=Cycles passed,
+			ylabel=Fitness,
+			scatter/classes={
+				max={mark=square*,blue},
+				med={mark=square*,red},
+				min={mark=square*,green}
+				}
+            ]
+            \input{data/tex/stats/balanced30-mutation32.tex}
+			\addlegendentry{Maximum}
+			\addlegendentry{Median}
+			\addlegendentry{Minimum}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Detail of genetic algorithm on balanced data with 30 elements in set and mutation chance of 1/32}
+\label{plot:genProfile30-mutation32}
+\end{figure}

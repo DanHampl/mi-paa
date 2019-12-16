@@ -1,0 +1,19 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{axis}[
+			xlabel=Items in set,
+			ylabel=Average imprecision in \%,
+			scatter/classes={
+				genDeviation={mark=square*,blue}
+				}
+            ]
+            \input{data/tex/deviation/balanced.tex}
+		\end{axis}
+	\end{tikzpicture}
+\caption{Deviation of the genetic algorithm}
+\label{plot:genDeviation}
+\end{figure}

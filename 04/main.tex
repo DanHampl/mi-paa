@@ -1,0 +1,126 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\LoadClass{article}
+\RequirePackage{todonotes}
+\RequirePackage[parfill]{parskip}
+\RequirePackage[margin=2.8cm]{geometry}
+\RequirePackage{hyperref}
+\RequirePackage[english]{babel}
+\RequirePackage{pgfplots}
+\RequirePackage{listings}
+\RequirePackage{amsfonts}
+\RequirePackage{subfiles}
+\RequirePackage{mathtools}
+\RequirePackage[noabbrev,capitalize,nameinlink]{cleveref}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\begin{document}
+\title{\textbf{MI-PAA~--~Task 4}\\
+Genetic algorithm solving the optimisation version of the 0/1 knapsack problem}
+\author{Daniel Hampl (hampldan)}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+The knapsack problem is one of the most widespread NP-Complete problems. It can be described as having a knapsack with a limited capacity and multiple items, where each of these items has a set value and weight. Our task is to fill the knapsack with items of highest combined value possible.
+
+In this paper, we will be focussing approximation algorithms solving the knapsack problem and the deviation of results provided by these approximation algorithms.
+
+\subsection{Definition\cite{WEBSITE:knapsackDef}}
+We have weight $W$ and $n$ items, where item $i$ is described as a pair $(w_i, v_i)$.
+
+\begin{itemize}
+    \item $w_i$ is a weight of object $n_i$
+    \item $v_i$ is a value of object $n_i$
+    \item $w_i, v_i \in \mathbb{N}\setminus\{0\}$
+\end{itemize}
+
+Find value $V$, where:
+
+\begin{itemize}
+    \item $\sum_i(x_i*v_i) = V$
+    \item $\sum_i(x_i*w_i) \leq W$
+    \item $x_i \in \{0,1\} \forall i$
+\end{itemize}
+
+\subsection{Task}
+
+Choose one heuristics (simulated annealing, genetic algorithm or tabu search)
+and use it for solving the optimisation version of the 0/1 knapsack problem.
+Test the solution on instances with at least 30 elements. Furthermore, test
+your algorithm with different configuration variables.
+
+
+
+\section{Implementation}
+All of these algorithms are implemented in Python 3.7, and all data were gathered on the Windows10
+OS running on Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz.
+
+In our genetic algorithm, we have used a fixed pool size for each to be 30, and the number of
+generations has been set to ten times the size of the concrete instance.
+
+\subsection{Fitness function}
+For calculating the fitness of each configuration, we have used the price of this combination
+with two additional conditions. The first condition being a case where the weight of said
+combination is zero, and the second is the weight being higher, than the capacity of our knapsack.
+In these cases, the value of our fitness function is set to 0 and -1, respectively.
+
+\subsection{Selection of the next generation}
+For selecting the next generation, we have decided to keep 2 elements from the last generation
+as they are. As for the rest of the new generation, we have selected 10\% of the previous
+generation and combined them with the last generation using random breeding.
+
+The random breeding takes 2 combinations and randomly selects each bit from one of those,
+which in turn creates a new combination used further in our algorithm.
+
+\subsection{Mutation}
+In every breeding, there is a chance of a mutation. During the selection of bits from parents,
+there is a chance to flip the bit. This chance is 1 in 128; however, it significantly grows with
+each cycle, where our fittest element stays unchanged.
+
+Moreover, to ensure the potency of our population, we enforce uniqueness in our pool. To not
+get stuck in an infinite loop, we also increase the chance of mutation with every step,
+where we attempted to add an element, which was already in our pool.
+
+
+\input{tex/time/balanced.tex}
+\input{tex/deviation/balanced.tex}
+
+
+\input{tex/stats/balanced30.tex}
+\input{tex/stats/balanced35.tex}
+\input{tex/stats/balanced40.tex}
+\input{tex/stats/balanced45.tex}
+
+
+\input{tex/stats/balanced30-mutation1024.tex}
+\input{tex/stats/balanced30-mutation32.tex}
+\input{tex/stats/balanced30-pool300.tex}
+
+
+\section{Variation in configuration variables}
+When we take a look at \cref{plot:genProfile30-pool300} we can see the higher
+the mutation coefficient is, the more spread out are our configurations, as
+the chance for the breeding result to be completely random grows.
+
+If we decide to use a larger pool for our algorithm, as you can see in \cref{plot:genProfile30-pool300},
+where we used 300 elements, we gain the result in earlier generations. Moreover,
+due to the nature of our fitness function, many of the medians have a fitness value of zero.
+
+\section{Conclusion}
+In conclusion, we have created and tested the genetic algorithm for the 0/1 version
+of the knapsack problem. We have managed to calculate the result with the maximal
+measured imprecision of 1\% with considerably low time complexity, especially for
+greater instances of the knapsack problem.
+
+\newpage
+\bibliographystyle{iso690}
+% \nocite{*} % all entries in the bib file
+\bibliography{database.bib}
+
+\end{document}

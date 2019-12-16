@@ -1,0 +1,22 @@
+\begin{figure}
+	\centering
+	\pgfplotsset{every axis legend/.append style={
+		at={(1.05,0.5)},
+		anchor=west}}
+	\begin{tikzpicture}
+		\begin{semilogyaxis}[
+			xlabel=Items in set,
+			ylabel=Seconds per set,
+			scatter/classes={
+				genetics={mark=square*,blue},
+				solveSmart={mark=square*,red}
+				}
+            ]
+            \input{data/tex/time/balanced.tex}
+			\addlegendentry{Genetic algorithm}
+			\addlegendentry{Branch \& bounds}
+		\end{semilogyaxis}
+	\end{tikzpicture}
+\caption{Time per set with balanced data}
+\label{plot:genTime}
+\end{figure}
