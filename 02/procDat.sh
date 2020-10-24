@@ -16,9 +16,9 @@ do
   # var=$(echo "scale=6; $var/500"| bc)
   # echo "$i $var hungryN" >> data/dataSetTime_normal2.txt
 
-  var=$(iconv -f utf-16 -t utf-8 data/raw/N$i$j.txt | grep _solveSingle | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
+  var=$(iconv -f utf-16 -t utf-8 data/raw/N$i$j.txt | grep _hungryExtendedDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
   var=$(echo "scale=6; $var/500"| bc)
-  echo "$i $var singleN" >> data/dataSetTime_normal3.txt
+  echo "$i $var singleN" >> data/dataSetTime_normal100.txt
 
   # var=$(iconv -f utf-16 -t utf-8 data/raw/N$i$j.txt | grep _fptas | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
   # var=$(echo "scale=6; $var/500"| bc)
@@ -34,9 +34,9 @@ do
   # var=$(echo "scale=6; $var/500"| bc)
   # echo "$i $var hungryH" >> data/dataSetTime_hard2.txt
 
-  var=$(iconv -f utf-16 -t utf-8 data/raw/ZKC$i$j.txt | grep _solveSingle | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
+  var=$(iconv -f utf-16 -t utf-8 data/raw/ZKC$i$j.txt | grep _hungryExtendedDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
   var=$(echo "scale=6; $var/500"| bc)
-  echo "$i $var singleH" >> data/dataSetTime_hard3.txt
+  echo "$i $var singleH" >> data/dataSetTime_hard100.txt
 
   # var=$(iconv -f utf-16 -t utf-8 data/raw/ZKC$i$j.txt | grep _fptas | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
   # var=$(echo "scale=6; $var/500"| bc)
@@ -52,9 +52,9 @@ do
   # var=$(echo "scale=6; $var/500"| bc)
   # echo "$i $var hungryN" >> data/deviation_normal.txt
 
-  var=$(iconv -f utf-16 -t utf-8 data/raw/N$i$j.txt | grep singleDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 3| awk '{s+=$1} END {print s}');
+  var=$(iconv -f utf-16 -t utf-8 data/raw/N$i$j.txt | grep hungryExtendedDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 3| awk '{s+=$1} END {print s}');
   var=$(echo "scale=6; $var/500"| bc)
-  echo "$i $var singleN" >> data/deviation_normal3.txt
+  echo "$i $var singleN" >> data/deviation_normal100.txt
 
   #----------------------------------------------------------------------------------------------------------------------------#
 
@@ -66,7 +66,7 @@ do
   # var=$(echo "scale=6; $var/500"| bc)
   # echo "$i $var hungryH" >> data/deviation_hard.txt
 
-  var=$(iconv -f utf-16 -t utf-8 data/raw/ZKC$i$j.txt | grep singleDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 3| awk '{s+=$1} END {print s}');
+  var=$(iconv -f utf-16 -t utf-8 data/raw/ZKC$i$j.txt | grep hungryExtendedDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 3| awk '{s+=$1} END {print s}');
   var=$(echo "scale=6; $var/500"| bc)
-  echo "$i $var singleH" >> data/deviation_hard3.txt
+  echo "$i $var singleH" >> data/deviation_hard100.txt
 done
