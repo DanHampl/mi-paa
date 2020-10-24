@@ -16,7 +16,7 @@ do
   # var=$(echo "scale=6; $var/500"| bc)
   # echo "$i $var hungryN" >> data/dataSetTime_normal2.txt
 
-  var=$(iconv -f utf-16 -t utf-8 data/raw/N$i$j.txt | grep _hungryExtendedDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
+  var=$(iconv -f utf-16 -t utf-8 data/raw/N$i$j.txt | grep _solveHungryExtended | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
   var=$(echo "scale=6; $var/500"| bc)
   echo "$i $var singleN" >> data/dataSetTime_normal100.txt
 
@@ -34,7 +34,7 @@ do
   # var=$(echo "scale=6; $var/500"| bc)
   # echo "$i $var hungryH" >> data/dataSetTime_hard2.txt
 
-  var=$(iconv -f utf-16 -t utf-8 data/raw/ZKC$i$j.txt | grep _hungryExtendedDeviation | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
+  var=$(iconv -f utf-16 -t utf-8 data/raw/ZKC$i$j.txt | grep _solveHungryExtended | tr -s ' '| sed 's/^ *//g' | cut -d' ' -f 2);
   var=$(echo "scale=6; $var/500"| bc)
   echo "$i $var singleH" >> data/dataSetTime_hard100.txt
 
