@@ -231,20 +231,14 @@ class Knapsack(object):
         price = 0
         weight = 0
         maxSingle = 0
+        singlePrice = 0
         for i in self.items:
             if (weight + i.weight) <= self.capacity:
                 weight += i.weight
                 price += i.price
-            if (i.weight > maxSingle):
-                maxSingle = i.weight
-        result = price if price > maxSingle else maxSingle
-        price = 0
-        weight = 0
-        for i in self.items:
-            if (weight + i.weight) <= self.capacity:
-                weight += i.weight
-                price += i.price
-        return price if price > result else result
+            if i.price > maxSingle and i.weight <= self.capacity:
+                maxSingle = i.price
+        return price if price > maxSingle else maxSingle
 
     def fptas(self, maxDev):
         maxPrice = 0
