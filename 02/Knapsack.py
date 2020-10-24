@@ -224,7 +224,7 @@ class Knapsack(object):
         return price if price > maxSingle else maxSingle
 
     def solveHungryExtended(self):
-        self.res = self._solveSingle()
+        self.res = self._solveHungryExtended()
 
     def _solveHungryExtended(self):
         self.items.sort(key=lambda x: x.weight/x.price)
