@@ -30,3 +30,15 @@ x y label
 35 .757696 singleN
 37 .469084 singleN
 40 .681640 singleN
+4 1.219394 singleN
+10 1.043966 singleN
+15 .926256 singleN
+20 .774402 singleN
+22 .663398 singleN
+25 .724522 singleN
+27 .658822 singleN
+30 .529006 singleN
+32 .596280 singleN
+35 .557696 singleN
+37 .444584 singleN
+40 .481640 singleN

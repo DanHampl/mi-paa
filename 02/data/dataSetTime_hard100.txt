@@ -31,3 +31,15 @@ x y label
 35 .000018 singleH
 37 .000020 singleH
 40 .000022 singleH
+4 .000002 singleH
+10 .000004 singleH
+15 .000008 singleH
+20 .000010 singleH
+22 .000010 singleH
+25 .000012 singleH
+27 .000012 singleH
+30 .000012 singleH
+32 .000012 singleH
+35 .000014 singleH
+37 .000014 singleH
+40 .000016 singleH
