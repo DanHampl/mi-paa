@@ -1,0 +1,33 @@
+x y label
+4  singleN
+10  singleN
+15  singleN
+20  singleN
+22  singleN
+25  singleN
+27  singleN
+30  singleN
+4  singleN
+10  singleN
+15  singleN
+20  singleN
+22  singleN
+25  singleN
+27  singleN
+30  singleN
+32  singleN
+35  singleN
+37  singleN
+40  singleN
+4 .000004 singleN
+10 .000004 singleN
+15 .000010 singleN
+20 .000012 singleN
+22 .000012 singleN
+25 .000012 singleN
+27 .000014 singleN
+30 .000016 singleN
+32 .000016 singleN
+35 .000016 singleN
+37 .000018 singleN
+40 .000020 singleN

@@ -1,0 +1,33 @@
+x y label
+4  singleH
+10  singleH
+15  singleH
+20  singleH
+22  singleH
+25  singleH
+27  singleH
+30  singleH
+4  singleH
+10  singleH
+15  singleH
+20  singleH
+22  singleH
+25  singleH
+27  singleH
+30  singleH
+32  singleH
+35  singleH
+37  singleH
+40  singleH
+4 .000002 singleH
+10 .000006 singleH
+15 .000010 singleH
+20 .000014 singleH
+22 .000014 singleH
+25 .000014 singleH
+27 .000016 singleH
+30 .000016 singleH
+32 .000018 singleH
+35 .000018 singleH
+37 .000020 singleH
+40 .000022 singleH
