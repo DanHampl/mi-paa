@@ -1,13 +1,1 @@
 x y label
-4 .019624 advancedGreedy1
-10 .019314 advancedGreedy1
-15 .019324 advancedGreedy1
-20 .019618 advancedGreedy1
-22 .018246 advancedGreedy1
-25 .016056 advancedGreedy1
-27 .01844 advancedGreedy1
-30 .018458 advancedGreedy1
-32 .018994 advancedGreedy1
-35 .019928 advancedGreedy1
-37 .010858 advancedGreedy1
-40 .015354 advancedGreedy1

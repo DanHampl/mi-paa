@@ -74,7 +74,14 @@ Experimentally evaluate the dependence of computational complexity on instance s
 \section{Implementation}
 All of these algorithms are implemented in Python 3.7, and all data were gathered on the Windows 10 OS running on Intel(R) Core(TM) i7-6700HQ CPU @ 2.60GHz.
 
-For testing of these algorithms, we have used two data sets. The first one with randomly generated values and the second with purposefully hard data. However, in the randomly generated set, we can see a deviation in the dataset with twenty items. This deviation can be seen in \cref{plot:deviation,plot:deviation2}.
+For testing of these algorithms, we have used two data sets. The first one with randomly generated values and the second with purposefully hard data. However, in the randomly generated set, we can see a deviation in the dataset with twenty items. This deviation can be seen in \cref{plot:deviation,plot:maxDev,plot:devFptas}.
+
+
+\subsection{Brute force algorithm}
+The brute force algorithm is indifferent to any changes to a dataset by design, as it has to test every option before returning our solution, thus having the same average time complexity in all our test cases.
+
+\subsection{Branch \& bounds algorithm}
+As we observe the branch and bounds algorithm, we can see its relatively low complexity, which is mostly thanks to our data having considerably high knapsack with the 0.8 ratio between knapsacks load capacity and the combined weight of all the items. Thanks to this setup, the B\&B algorithm can skip a significant part of combinations, as it can add most of the elements. This difference can be observed in \cref{plot:fullTime}.
 
 \subsection{Dynamic programing}
 Our task was to use dynamic programming for solving the optimisation version of the 0/1 knapsack problem, for which we have selected the decomposition by value, due to its similarity with the FPTAS algorithm.
@@ -86,10 +93,10 @@ The greedy algorithm sorts the elements given at input by the value to weight ra
 
 This approach might not seem too precise, but it offers much lower complexity with $\mathbb{O}(n \log(n))$, where the most complex task is to sort the data.
 
-\subsection{Single most valuable item}
-This is the fastest and the least precise algorithm of those we are considering in this paper. The main idea behind this algorithm is to select one element of the highest value independent on weight. This algorithm can be precise in cases, where we have multiple low-valued items and one of high value.
+\subsection{Modified greedy heuristics}
+The modified greedy algorithm takes the maximum value item and compares it to the result of the basic greedy algorithm mentioned above. Afterwards, it takes the better of these results, which will be the result of our algorithm.
 
-However, this algorithm is highly unreliable, and I wouldn't recommend using it in any case. It might offer linear complexity, yet the average deviation appeared to be above 50\% in most of our test cases and in one case even surpassed 125\%.
+This algorithm allows us to approximate the result with the same complexity as the basic greedy heuristics, with a slight improvement in precision, as can be seen in \cref{plot:fptasTime}.
 
 \subsection{FPTAS}
 
@@ -111,11 +118,12 @@ In \cref{plot:fptasTime,plot:devFptas} we can see the average time complexity an
 \input{data/tex/fptasTime.tex}
 \input{data/tex/fptasDeviation.tex}
 \input{data/tex/fptasMaxDeviation.tex}
+\input{data/tex/allMaxDeviation.tex}
 
 \newpage
 
 \section{Conclusion}
-In conclusion, we have created four implementations for solving the optimisation version of the 0/1 knapsack problem. We have compared the efficiency of these four implementations with respect to processor time and their precision. This comparison was made on randomly generated data set as well as on a purposefully hard dataset. However, the difference between those two datasets did not appear to be particularly apparent, which might have been caused by the concrete implementation.
+In conclusion, we have created six implementations for solving the optimisation version of the 0/1 knapsack problem. We have compared the efficiency of these implementations with respect to processor time and their precision. This comparison was made on randomly generated data set as well as on a purposefully hard dataset. However, the difference between those two datasets did not appear to be particularly apparent, which might have been caused by the concrete implementation.
 
 Furthermore,  we have also compared the time complexity and the imprecision within the FPTAS algorithm for multiple maximal imprecisions. From these, we have selected few to show in \cref{plot:fptasTime,plot:devFptas}.
 
