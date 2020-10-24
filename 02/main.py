@@ -28,16 +28,16 @@ def main():
         res = k.res
 
         # greedy heuristics
-        # k = Knapsack(line)
-
-        # k.solveHungry()
-        # print(f'{k.id} hungryStupidDeviation {k.deviation(res):.4}')
-
-        # greedy heuristics
         k = Knapsack(line)
 
-        k.solveSingle()
-        print(f'{k.id} singleDeviation {k.deviation(res):.4}')
+        k.solveHungryExtended()
+        print(f'{k.id} hungryExtendedDeviation {k.deviation(res):.4}')
+
+        # greedy heuristics
+        #k = Knapsack(line)
+
+        #k.solveSingle()
+        #print(f'{k.id} singleDeviation {k.deviation(res):.4}')
 
         # # fptas
         # k = Knapsack(line)

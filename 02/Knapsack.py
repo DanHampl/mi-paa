@@ -223,6 +223,29 @@ class Knapsack(object):
                 maxSingle = i.weight
         return price if price > maxSingle else maxSingle
 
+    def solveHungryExtended(self):
+        self.res = self._solveSingle()
+
+    def _solveHungryExtended(self):
+        self.items.sort(key=lambda x: x.weight/x.price)
+        price = 0
+        weight = 0
+        maxSingle = 0
+        for i in self.items:
+            if (weight + i.weight) <= self.capacity:
+                weight += i.weight
+                price += i.price
+            if (i.weight > maxSingle):
+                maxSingle = i.weight
+        result = price if price > maxSingle else maxSingle
+        price = 0
+        weight = 0
+        for i in self.items:
+            if (weight + i.weight) <= self.capacity:
+                weight += i.weight
+                price += i.price
+        return price if price > result else result
+
     def fptas(self, maxDev):
         maxPrice = 0
         for i in self.items:
